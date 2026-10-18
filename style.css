@@ -226,3 +226,12 @@ mark{background:var(--honey);color:#33402F;border-radius:6px;padding:0 4px;font-
 :root[data-theme="dark"] .wp2 h3 .i,:root[data-theme="dark"] .sk3 .i,:root[data-theme="dark"] .r-pen .i,:root[data-theme="dark"] #thIcon .i{color:var(--lav)}
 :root[data-theme="dark"] .wp3 h3 .i,:root[data-theme="dark"] .r-chart .i{color:var(--green)}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+/* ---- laptop / desktop only: the app fills the whole screen (touch phones and tablets are untouched) ---- */
+@media (hover:hover) and (pointer:fine) and (min-width:900px){
+  .app{width:100%;height:100%;border-radius:0;box-shadow:none}
+  .blob{display:none}
+  /* keep the content readable: bars and pages stretch full width, the content stays centered */
+  .bar,.hero,.body,.nav,.gopts{padding-left:max(20px,calc((100% - 760px)/2));padding-right:max(20px,calc((100% - 760px)/2))}
+  .hero{border-radius:0 0 34px 34px}
+  .ghud{padding-left:max(14px,calc((100% - 760px)/2));padding-right:max(14px,calc((100% - 760px)/2))}
+}
