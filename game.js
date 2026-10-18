@@ -374,10 +374,13 @@ const SkyRescue = (() => {
 
     // --- move meteors, check if one lands ---
     for (const m of [...meteors]) {
+      if (state !== 'play') break;               // the game ended during this loop
       if (m.mode !== 'fall') continue;
       m.y += fallSpeed() * H * m.speedMul * dt;
       if (m.y + m.h >= dangerY) meteorLanded(m);
     }
+    // Game Over happened: only keep the effects moving, and don't re-enable the buttons
+    if (state !== 'play') { updateEffects(dt); return; }
 
     // --- which meteor are the buttons for? ---
     const t = findTarget();

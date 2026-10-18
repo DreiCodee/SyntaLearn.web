@@ -27,7 +27,7 @@
 .gover p{margin:0;font-size:16px;line-height:1.5;color:#dcebf5;max-width:290px}
 .gover .gbig{font-size:52px;font-weight:800;color:#ffd166;line-height:1.1}
 .gover .btn{max-width:260px}
-.gover .btn.ghost{background:#ffffff22;box-shadow:none}
+.gover .btn.ghost{background:#ffffff22;color:#fff;border-color:#ffffff66;box-shadow:none}
 
 /* the answer buttons under the play area */
 .gopts{display:flex;flex-wrap:wrap;gap:10px;padding:12px 14px calc(14px + env(safe-area-inset-bottom,0px));background:var(--card);min-height:150px;align-content:flex-start}

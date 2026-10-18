@@ -126,6 +126,7 @@ html.fade *{transition:background-color .45s ease,color .45s ease,border-color .
 .mav{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font:600 16px var(--font)}
 .mem b{font:600 17px var(--font)}
 .role{font:600 14px var(--font);color:var(--soft);white-space:nowrap}
+.mem .role{background:none;padding:0;border-radius:0}
 .made{text-align:center;color:var(--soft);font-weight:700;margin-top:4px}
 .screen.cen{justify-content:center;align-items:center;text-align:center;padding:calc(28px + env(safe-area-inset-top,0px)) 28px calc(28px + env(safe-area-inset-bottom,0px));gap:14px}
 .screen.cen>*{width:100%;max-width:330px}

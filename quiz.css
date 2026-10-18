@@ -14,6 +14,7 @@
 .qzscore{width:150px;height:150px;border-radius:50%;margin:4px auto;display:grid;place-content:center;text-align:center;background:var(--green2);border:6px solid var(--green);font-family:var(--font)}
 .qzscore b{font-size:52px;line-height:1;color:var(--ink)}
 .qzscore span{font-size:14px;font-weight:600;color:var(--soft)}
+.qzscore b,.qzscore span{display:block}
 #qzdBody h3{margin:6px 0 -4px;font-size:17px;color:var(--ink)}
 .qzm{background:var(--clay2);border-radius:16px;padding:12px 14px;line-height:1.4;font-size:15px;color:var(--ink);display:flex;flex-direction:column;gap:3px}
 .qzm-q{font-weight:700}
