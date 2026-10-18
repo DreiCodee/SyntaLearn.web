@@ -226,6 +226,10 @@ mark{background:var(--honey);color:#33402F;border-radius:6px;padding:0 4px;font-
 :root[data-theme="dark"] .wp2 h3 .i,:root[data-theme="dark"] .sk3 .i,:root[data-theme="dark"] .r-pen .i,:root[data-theme="dark"] #thIcon .i{color:var(--lav)}
 :root[data-theme="dark"] .wp3 h3 .i,:root[data-theme="dark"] .r-chart .i{color:var(--green)}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+/* ---- no text selecting / copying (typing boxes still work) ---- */
+body,.app *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.app input,.app textarea{-webkit-user-select:text;user-select:text}
+img{-webkit-user-drag:none}
 /* ---- laptop / desktop only: the app fills the whole screen (touch phones and tablets are untouched) ---- */
 @media (hover:hover) and (pointer:fine) and (min-width:900px){
   .app{width:100%;height:100%;border-radius:0;box-shadow:none}
