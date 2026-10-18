@@ -53,7 +53,9 @@ const SkyRescue = (() => {
     pointsPerSecond: 1,          // points just for surviving
 
     // --- rules ---
-    wrongAnswerCostsLife: false, // true = a wrong tap also takes a heart
+    wrongAnswerCostsLife: true,  // true = a wrong tap also takes a heart
+    tapCooldownMs: 350,          // after any tap, taps are ignored for this long (stops spam tapping)
+    wrongLockMs: 1500,           // after a WRONG tap, all choices are locked for this long
     bestScoreKey: 'sf-gbest',    // where the best score is saved on the phone
   };
 
@@ -291,8 +293,21 @@ const SkyRescue = (() => {
     }).join('');
   }
 
+  let lockUntil = 0, lockTimer = 0;               // anti-spam: taps are ignored until lockUntil
+  function lockChoices(ms) {
+    lockUntil = performance.now() + ms;
+    if (ms > SETTINGS.tapCooldownMs) {            // a long lock (wrong answer): grey out the buttons too
+      el.opts.classList.add('locked');
+      clearTimeout(lockTimer);
+      lockTimer = setTimeout(() => el.opts.classList.remove('locked'), ms);
+    }
+  }
+  function unlockChoices() { lockUntil = 0; clearTimeout(lockTimer); el.opts.classList.remove('locked'); }
+
   function answer(choice) {
     if (state !== 'play' || !target) return;
+    if (performance.now() < lockUntil) return;    // too fast, ignore the tap
+    lockChoices(SETTINGS.tapCooldownMs);
     if (choice === target.q.answer) correctAnswer(target);
     else wrongAnswer(target, choice);
   }
@@ -323,6 +338,8 @@ const SkyRescue = (() => {
     shake = Math.max(shake, 0.15);
     hurt = 0.25;
     buzz(40);
+    lockChoices(SETTINGS.wrongLockMs);            // no guessing again right away
+    floaters.push({ x: m.x, y: m.y + m.h + 30, text: 'Wrong!', life: 0.9, max: 0.9 });
     if (SETTINGS.wrongAnswerCostsLife) loseLife();
     showOptions();
     updateHud();
@@ -693,6 +710,7 @@ const SkyRescue = (() => {
     spawnTimer = 0.6;
     meteors = []; shots = []; particles = []; wordBits = []; rings = []; floaters = [];
     target = null; shake = 0; hurt = 0; recent = [];
+    unlockChoices();
     shipX = W / 2;
     showOptions(); updateHud();
   }

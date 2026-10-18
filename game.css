@@ -36,6 +36,7 @@
 .gopt.bad{background:var(--clay2);text-decoration:line-through;opacity:.55}
 .gopt:disabled{cursor:default}
 .gopts.idle .gopt{opacity:.35}
+.gopts.locked .gopt{opacity:.35;pointer-events:none}
 
 /* short screens (phone turned sideways) */
 @media (max-height:520px){
